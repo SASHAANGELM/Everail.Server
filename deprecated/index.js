@@ -1,26 +1,10 @@
-const express = require('express');
-const bodyParser = require('body-parser')
-const app = express();
-
-const port = process.env.PORT || 3000;
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// parse application/json
-app.use(bodyParser.json());
+const app = require('./graphql.js');
 
 function generateId() {
   return `${Math.floor(Math.random() * 100000000)}`.padStart(8, '0');
 }
 
 const todos = [];
-
-// CRUD: Create Read Update Delete
-// Create - Post
-// Read - Get
-// Update - Put
-// Delete - Delete
 
 app.post('/todos', (req, res) => {
   const { name, done, description } = req.body;
@@ -101,12 +85,4 @@ app.delete('/todos/:id', (req, res) => {
       error: "Todo with this ID not found"
     });
   }
-});
-
-app.get('/', (req, res) => {
-  res.send(`Hello World! This app running on ${port} port.`);
-});
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
 });

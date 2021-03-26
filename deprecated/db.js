@@ -1,0 +1,1 @@
+const url = 'mongodb+srv://everail:KNUTmErvzhDlsJP2@sandboxcluster.jacxy.gcp.mongodb.net/everail?retryWrites=true&w=majority';
