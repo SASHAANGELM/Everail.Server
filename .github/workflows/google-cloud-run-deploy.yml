@@ -6,7 +6,7 @@ name: Build and Deploy to Google Cloud Run
 
 env:
   PROJECT_ID: ${{ secrets.PROJECT_ID }}
-  SERVICE: hello-cloud-run
+  SERVICE: everail
   REGION: us-central1
 
 jobs:
