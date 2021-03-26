@@ -1,0 +1,29 @@
+name: Build and Deploy to Google Cloud Run
+'on':
+  push:
+    branches:
+      - main
+
+env:
+  PROJECT_ID: ${{ secrets.PROJECT_ID }}
+  SERVICE: hello-cloud-run
+  REGION: us-central1
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Google Cloud CLI
+        uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+          project_id: ${{ secrets.PROJECT_ID }}
+          service_account_key: ${{ secrets.SA_KEY }}
+
+      - name: Build and Push image to Google Container Registry
+        run: gcloud builds submit --tag "gcr.io/$PROJECT_ID/$SERVICE:$GITHUB_SHA" --quiet
+
+      - name: Deploy image to Google Cloud Run
+        run: gcloud run deploy "$SERVICE" --region "$REGION" --image "gcr.io/$PROJECT_ID/$SERVICE:$GITHUB_SHA" --platform "managed" --allow-unauthenticated --quiet
