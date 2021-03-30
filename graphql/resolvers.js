@@ -1,4 +1,4 @@
-const { Todo, Organization, Member, User } = require('./models.js');
+const { Todo, Abyss } = require('./models.js');
 
 const resolvers = {
   Query: {
@@ -7,6 +7,13 @@ const resolvers = {
     },
     todo: async (_, { id }) => {
       return await Todo.findById(id);
+    },
+
+    abysses: async () => {
+      return await Abyss.find();
+    },
+    abyss: async (_, { id }) => {
+      return await Abyss.findById(id);
     },
   },
   Mutation: {
@@ -24,6 +31,13 @@ const resolvers = {
     },
     deleteTodo: async (_, { id }) => {
       return await Todo.findByIdAndDelete(id);
+    },
+
+    createAbyss: async (_, { input }) => {
+      return await new Abyss(input).save();
+    },
+    deleteAbyss: async (_, { id }) => {
+      return await Abyss.findByIdAndDelete(id);
     },
   }
 };
