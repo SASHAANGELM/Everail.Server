@@ -11,7 +11,8 @@ const Todo = mongoose.model('Todo', todoSchema);
 const abyssSchema = new mongoose.Schema({
   type: String,
   level: Number,
-  Looted: Number,
+  looted: Number,
+  time: Number,
   earn: [{
     id: Number,
     name: String,
@@ -21,7 +22,8 @@ const abyssSchema = new mongoose.Schema({
     id: Number,
     name: String,
     count: Number
-  }]
+  }],
+  
 });
 const Abyss = mongoose.model('Abyss', abyssSchema);
 

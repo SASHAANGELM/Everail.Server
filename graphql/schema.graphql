@@ -47,7 +47,7 @@ type Abyss {
   type: String!
   level: Int!
   looted: Int
-  time: Int!
+  time: Float!
   earn: [AbyssItem]
   spend: [AbyssItem]
 }
