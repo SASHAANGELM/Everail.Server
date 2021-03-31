@@ -13,6 +13,11 @@ const abyssSchema = new mongoose.Schema({
   level: Number,
   looted: Number,
   time: Number,
+  loot: {
+    first: Number,
+    second: Number,
+    third: Number
+  },
   earn: [{
     id: Number,
     name: String,

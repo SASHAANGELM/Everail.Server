@@ -24,8 +24,8 @@ type Todo {
 input CreateAbyssInput {
   type: String!
   level: Int!
-  looted: Int
   time: Float!
+  loot: AbyssLootInput
   earn: [AbyssItemInput]!
   spend: [AbyssItemInput]!
 }
@@ -36,18 +36,30 @@ input AbyssItemInput {
   count: Int!
 }
 
+input AbyssLootInput {
+  first: Int!
+  second: Int!
+  third: Int!
+}
+
 type AbyssItem {
   id: Int!
   name: String!
   count: Int!
 }
 
+type AbyssLoot {
+  first: Int!
+  second: Int!
+  third: Int!
+}
+
 type Abyss {
   _id: ID!
   type: String!
   level: Int!
-  looted: Int
   time: Float!
+  loot: AbyssLoot
   earn: [AbyssItem]
   spend: [AbyssItem]
 }
